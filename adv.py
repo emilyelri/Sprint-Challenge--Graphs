@@ -1,9 +1,9 @@
 from room import Room
 from player import Player
 from world import World
+
 import random
 from ast import literal_eval
-from util import Stack
 
 # Load world
 world = World()
