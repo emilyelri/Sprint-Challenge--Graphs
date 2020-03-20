@@ -28,7 +28,7 @@ player = Player(world.starting_room)
 #     no recursive this time
 #     store reverse path -- will need to map opposite directions
 #     cycle around each room's exits randomly until none are left
-#     to make sure all rooms are visited, have conditional for while visited is less than the number of rooms?? don't hard code 500
+#     to make sure all rooms are visited, have conditional for while visited is less than the number of rooms per test
 #     make a graph --- SCRAPPED. graph already exists room_graph. can len(room_graph) -- yep
 #     Stack?? -- SCRAPPED
 #     grab each room and print to see what the data looks like
@@ -115,10 +115,11 @@ while len(visited) < len(room_graph) - 1:                                       
 
     move_direction = visited[player.current_room.id].pop(0)                         # grab that first random direction from the current room in visited
     traversal_path.append(move_direction)                                           # add it to traversal path
-    reverse_path.append(opposite[move_direction])                                           # add the OPPOSITE of it to the path
+    reverse_path.append(opposite[move_direction])                                   # add the OPPOSITE of it to the path
     player.travel(move_direction)                                                   # then move in that direction
 
                                                                                     # rinse and repeat until all rooms have been added to visited!
+                                                                                    # Stack dft
 
 # TRAVERSAL TEST
 visited_rooms = set()
@@ -131,9 +132,8 @@ for move in traversal_path:
 
 if len(visited_rooms) == len(room_graph):
     print()
-    print(len(traversal_path))
-    print()
     print(f"TESTS PASSED: {len(traversal_path)} moves, {len(visited_rooms)} rooms visited")
+    print()
 else:
     print("TESTS FAILED: INCOMPLETE TRAVERSAL")
     print(f"{len(room_graph) - len(visited_rooms)} unvisited rooms")
